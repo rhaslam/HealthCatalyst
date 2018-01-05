@@ -1,0 +1,55 @@
+﻿@page
+@using Microsoft.AspNetCore.Mvc.RazorPages;
+@using HCT_1.Models;
+@model HCT_1.Pages.IndexModel;
+*
+
+<!DOCTYPE html>
+<html lang="en">
+  <head></head>
+  <body>
+      <!-- The text input widget for searching -->
+      <div class="jumbotron">
+          <h1>Person Search</h1>
+      </div>
+      @using (Html.BeginForm())
+    {
+      <label for="SearchString">Search String:</label>
+      <input type="text" asp-for="SearchString">
+      <input type="submit" id="Submit">
+}
+
+      <!-- Display for matched results from the Name.Like Query -->
+      <div class="jumbotron">
+          <h1>Matched Persons</h1>
+      </div>
+      <div>
+
+          <table>
+              <thead>
+              <th>------------- Name  -------------</th>
+              <th>-------------------- Address --------------------</th>
+              <th>Age ---</th>
+              <th>Interests --------------------</th>
+              </thead>
+              <tbody>
+                  @if (Model.MatchedPerson != null && Model.MatchedPerson.Count != 0)
+                  {
+                      foreach (var person in Model.MatchedPerson)
+                      {
+                          var imagePath = "images/" + @person.Photo;
+                              <tr>
+                                  <td>@person.Name</td>
+                                  <td>@person.Address</td>
+                                  <td>@person.Age</td>
+                                  <td>@person.Interests</td>
+                                  <td><img src="@imagePath" alt=""/></td>
+                              </tr>
+                        }
+                    }
+
+              </tbody>
+          </table>
+      </div>
+  </body>
+  </html>

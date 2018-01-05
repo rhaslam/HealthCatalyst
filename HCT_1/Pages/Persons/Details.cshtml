@@ -1,0 +1,18 @@
+﻿@page "{handler?}/{id?}"
+@model IndexModel
+
+<h2>Persons</h2>
+<table class="table">
+    <tr>
+        <th>Name</th>
+        <th>Address</th>
+        <th>Age</th>
+        <th>Interests</th>
+    </tr>
+    @foreach (var item in Model.Person)
+    {
+        <tr>
+            <td><a asp-page="Details" asp-route-id="@item.Id">@item</a></td>
+        </tr>
+    }
+</table>

@@ -1,0 +1,36 @@
+﻿@page
+@using Microsoft.AspNetCore.Mvc.RazorPages;
+@using HCT_1.Models;
+@model AllPersonsModel
+@{
+}
+<!-- List current content od database -->
+
+<div class="jumbotron">
+    <h1>All Current Persons</h1>
+</div>
+<div>
+    <table>
+        <thead>
+            <th>------------- Name  -------------</th>
+            <th>-------------------- Address --------------------</th>
+            <th>Age ---</th>
+            <th>Interests --------------------</th>
+        </thead>
+        <tbody>
+            @{
+                foreach (var person in Model.Persons)
+                {
+                    var imagePath = "images/" + @person.Photo;
+                    <tr>
+                        <td>@person.Name</td>
+                        <td>@person.Address</td>
+                        <td>@person.Age</td>
+                        <td>@person.Interests</td>
+                        <td><img src="@imagePath" alt="" /></td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
